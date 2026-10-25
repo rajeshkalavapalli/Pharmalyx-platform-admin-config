@@ -10,7 +10,10 @@ const Organisations = require('./controllers/Organisations');
 const app = express();
 
 app.use(express.json({ limit: '100kb' }));
-app.use(cors());
+// CORS_ORIGINS: comma-separated web addresses allowed to call the API (the hosted web app).
+// Not set (local development): any origin.
+const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map((o) => o.trim()).filter(Boolean);
+app.use(cors(allowedOrigins.length ? { origin: allowedOrigins } : {}));
 
 // Every /platform route needs a signed-in platform owner, except POST /platform/login.
 app.use('/platform', authenticate);

@@ -9,8 +9,9 @@ const dbConfig = {
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
     options: {
-        encrypt: false,
-        trustServerCertificate: true,
+        // Azure SQL needs an encrypted connection (DB_ENCRYPT=true); a local SQL Server doesn't.
+        encrypt: process.env.DB_ENCRYPT === 'true',
+        trustServerCertificate: process.env.DB_ENCRYPT !== 'true',
     },
     requestTimeout: 60000,
 };
