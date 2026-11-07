@@ -25,3 +25,8 @@
 ### V 1.0.4
 
 - create-platform-admin script: arrow-key escape codes and control characters are removed from the typed username / name / password answers
+
+
+### V 1.0.5
+
+- Fix "Failed to sign in" after a deploy: the database pool was created once at start-up, so if Azure SQL was still waking up every request kept failing until a restart; now a failed connection is retried (warm-up every 5 s, and each request starts a fresh attempt), with a 30 s connection timeout - same as the main API
