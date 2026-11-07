@@ -1,6 +1,6 @@
 {
   "name": "pharmalyx-platform-admin-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pharmalyx platform owner API: create and manage organisations (companies).",
   "main": "app.js",
   "private": true,
@@ -16,6 +16,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "helmet": "^8.3.0",
     "mssql": "^12.7.0"
   },
   "devDependencies": {
