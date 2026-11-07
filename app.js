@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const { authenticate } = require('./utils/auth');
 const Auth = require('./controllers/Auth');
 const Organisations = require('./controllers/Organisations');
+const Overview = require('./controllers/Overview');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(cors(allowedOrigins.length ? { origin: allowedOrigins } : {}));
 app.use('/platform', authenticate);
 app.use('/platform', Auth);
 app.use('/platform', Organisations);
+app.use('/platform', Overview);
 
 const PORT = Number(process.env.PORT) || 5001;
 

@@ -14,3 +14,9 @@
 
 - Security headers with helmet and trust proxy
 - CORS: when CORS_ORIGINS is not set on a hosted server, only the platform admin web app may call the API; local machines allow any origin
+
+
+### V 1.0.3
+
+- GET /platform/overview (controllers/Overview): totals (companies, active, paused, new this month, seats used, visits and people working this week), companies joined per month (12 months), visits per day across companies (14 days), attention lists (near the seat limit, quiet / idle, paused) and per-company health
+- Per-company usage is counts only: visits in 7 / 30 days, people who logged a visit this week, orders in 30 days, last activity; health = Working / Quiet / Idle / Paused
