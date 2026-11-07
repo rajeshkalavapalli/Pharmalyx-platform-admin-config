@@ -8,7 +8,9 @@ const argon2 = require('argon2');
 const { customQuery } = require('../utils/dbFunctions');
 const db = require('../db');
 
-const ask = (rl, question) => new Promise((resolve) => rl.question(question, (answer) => resolve(answer.trim())));
+// Arrow keys in some terminals arrive as escape codes (e.g. ESC [D): drop them and any other control characters.
+const clean = (text) => String(text || '').replace(/\x1b\[[0-9;]*[A-Za-z]/g, '').replace(/[\x00-\x1f\x7f]/g, '').trim();
+const ask = (rl, question) => new Promise((resolve) => rl.question(question, (answer) => resolve(clean(answer))));
 
 // Reads a line without showing what is typed.
 const askHidden = (question) =>
